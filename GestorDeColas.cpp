@@ -15,7 +15,7 @@ using namespace std;
 
 const int MESSAGE_SIZE = 4001; //mensajes de no más 4000 caracteres
 const int TAMANYO_MAX_COLA = 50; //tamaño maximo de cola
-const int NUM_COLAS = 3;
+
 const int Cola_tareas = 1;
 const int Cola_QOS = 2;
 const int Cola_tags = 3;
@@ -23,21 +23,21 @@ const int Cola_tags = 3;
 static string colas[NUM_COLAS][TAMANYO_MAX_COLA];
 static int front_colas[NUM_COLAS] = {-1,-1,-1};
 
-static bool cola_tareas_anyadir(int cola, string mensaje){
-	if (!lleno(cola)){
-		front++;
-		colas[cola][front_colas[cola]] = mensaje;
-		return true;
-	}
-	return false;
-}
-
 static bool lleno(int cola){
 	return front_colas[cola] == 49;
 }
 
 static bool vacio(int cola){
-	return front_cola_tareas[cola] == -1;
+	return front_colas[cola] == -1;
+}
+
+static bool cola_tareas_anyadir(int cola, string mensaje){
+	if (!lleno(cola)){
+		front_colas[cola]++;
+		colas[cola][front_colas[cola]] = mensaje;
+		return true;
+	}
+	return false;
 }
 
 static bool leer(int cola, string& mensaje){
@@ -59,8 +59,10 @@ static bool eliminar(int cola){
 
 
 //POST: Devuelve 3 tuplas <palabra clave, nombre_cola>
-/*List<int,string> */ void getQueues(){
+tupla getQueues(){
 	//a acabar
+	struct tupla t = {{1,2,3}, {"Cola_tareas","Cola_QOS", "Cola_tags"}};
+	return t;
 }
 
 //POST: Escribe mensaje en una cola existente
