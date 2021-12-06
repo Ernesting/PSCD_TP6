@@ -60,7 +60,6 @@ static bool eliminar(int cola){
 
 //POST: Devuelve 3 tuplas <palabra clave, nombre_cola>
 tupla getQueues(){
-	//a acabar
 	struct tupla t = {{1,2,3}, {"Cola_tareas","Cola_QOS", "Cola_tags"}};
 	return t;
 }
