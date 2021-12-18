@@ -1,12 +1,12 @@
 Gestor de colas
 
 protocolo de mensaje (Accion,cola,Twet) para master->gestor
-					 (Accion,cola) para worker->gestor
-					 (Accion,cola, datos) par gestor->worker
-					 (Accion,cola) para cliente->gestor
-					 (Accion, cola, datos) gestor->cliente
+		     (Accion,cola) para worker->gestor
+		     (Accion,cola, datos) par gestor->worker
+		     (Accion,cola) para cliente->gestor
+		     (Accion, cola, datos) gestor->cliente
 					 
-//NOTA hay cosas que pueden cambiar ya que ns como estan implementado los demas procesos
+//NOTA: hay cosas que pueden cambiar ya que ns como estan implementado los demás procesos
 
 GestorColas(){
 	GestorMaster()
@@ -19,8 +19,8 @@ GestorMaster(master_fd, ControlColas){
 		Recibirmensaje(master_fd, mensaje)
 		if(accion=AñadirTarea){
 			ControlColas.publish(cola,Twet)
+			Mandarmensaje(master_fd,OK)
 		}
-		Mandarmensaje(master_fd,OK)
 	}
 }
 
@@ -30,7 +30,7 @@ GestorWorker(worfer_fd, ControlColas){
 		if(accion==ProcesarTarea){
 			ControlColas.read(cola, x) ---------> podemos suponer que la cola es Tareas?
 			Mandarmensaje(worker_fd,mensaje)
-			}
+		}
 		if(accion==GuardarDatos){
 			ControlColas.publish(cola,datos)
 			Mandarmensaje(worker_fd, "Datos guardados")
