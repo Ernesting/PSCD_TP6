@@ -3,3 +3,5 @@ Ernesto:
   -Nos el documento de texto de los tweets
   -Como comunicar el proceso de stremming y el proceso maestro
   -¿Cómo se harían los procesos de analisis?
+  -El cliente que muestra la información del gestor de colas lo hacemos nosotros, el de tags 
+  tiene que hacer de servidor a la espera de que un cliente le mande petición para mostrar por pantalla
