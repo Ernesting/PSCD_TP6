@@ -1,0 +1,23 @@
+Servidor:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Servidor.cpp
+	g++ -pthread Socket/Socket.o Servidor.o -o Servidor -lsocket -lnsl
+  
+Master:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Master.cpp
+	g++ -pthread Socket/Socket.o Master.o -o Master
+ 
+Analizador:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Analizador.cpp
+	g++ -pthread Socket/Socket.o Analizador.o -o Analizador
+  
+ServidorMulticliente:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets ServidorMulticliente.cpp
+	g++ -pthread Socket/Socket.o ServidorMulticliente.o -o ServidorMulticliente -lsocket -lnsl
+
+Socket:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Socket/Socket.cpp -o Socket/Socket.o
+
+
+GestorColas:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets GestorColas.cpp
+	g++ -pthread Socket/Socket.o GestorColas.o -o GestorColas
