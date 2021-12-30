@@ -6,6 +6,10 @@ Master:
 	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Master.cpp
 	g++ -pthread Socket/Socket.o Master.o -o Master
  
+Worker:
+	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Worker.cpp
+	g++ -pthread Socket/Socket.o Worker.o -o Worker 
+ 
 Analizador:
 	g++ -c -I. -ISocket -O2 -std=c++11 -lsockets Analizador.cpp
 	g++ -pthread Socket/Socket.o Analizador.o -o Analizador
