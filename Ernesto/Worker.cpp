@@ -149,11 +149,12 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
             chan_GESTOR_COLAS.Close(socket_fd_GESTOR_COLAS);
             exit(1);
         }
+      //leer ok
+      read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
     }
     
 
-    //leer ok
-    read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
+    
   }  
 }
  
@@ -183,4 +184,3 @@ int main(int argc, char* argv[]) {
   }
   cout << "Bye bye" << endl;
 }
-
