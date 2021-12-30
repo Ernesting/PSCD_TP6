@@ -158,7 +158,7 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
   }  
 }
  
-
+//N es el numero de procesos a la vez
 //Primer parametro es la IP del server
 //Segundo parametro es el puerto del server
 int main(int argc, char* argv[]) {
