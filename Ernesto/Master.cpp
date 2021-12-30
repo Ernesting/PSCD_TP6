@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     const string GET_TWEETS = "getTweets()";
 	  const string MENS_FIN   = "endOfService";
     const string GET_QUEUES = "getQueues()";
-    const string PUBLISH = "publish()";
+    const string PUBLISH = "AÑADIR_TAREA";
     const string READ = "read()";
     // Dirección y número donde escucha el proceso servidor
     //string SERVER_ADDRESS = "localhost";
@@ -117,33 +117,19 @@ int main(int argc, char* argv[]) {
         }
       }
       
-		/*	grupos[0] = strtok (dup,"\n");
-			
-			for (int i = 0; i <5; i++){
-				  grupos[i] = grupos[i]
-					grupos[i] =  strtok(NULL, "\n");
-				
-			}
-			
-			for (int i = 0; i < 25; i++){
-				cout << grupos[i] << " " << i <<endl;
-				
-			}*/
-   cout << grupos_de_5_tweets[0] <<endl;
-           
-    mensaje = GET_QUEUES;
-    send_bytes = chan_GESTOR_COLAS.Send(socket_fd_GESTOR_COLAS, mensaje);
-    if(send_bytes == -1) {
-        cerr << "Error al enviar datos: " << strerror(errno) << endl;
-        // Cerramos el socket
-        chan_GESTOR_COLAS.Close(socket_fd_GESTOR_COLAS);
-        exit(1);
-    }
+    for (int i = 0; i< 5; i++){
+      mensaje = PUBLISH;
+      send_bytes = chan_GESTOR_COLAS.Send(socket_fd_GESTOR_COLAS, mensaje+","+grupos_de_5_tweets[i]);
+      if(send_bytes == -1) {
+          cerr << "Error al enviar datos: " << strerror(errno) << endl;
+          // Cerramos el socket
+          chan_GESTOR_COLAS.Close(socket_fd_GESTOR_COLAS);
+          exit(1);
+      }
+      read_bytes = chan_TWEETS.Recv(socket_fd_TWEETS, buffer, MESSAGE_SIZE);
+      cout << "Mensaje recibido: " << buffer <<endl;
+    }     
             
-
-            // Recibimos la respuesta del servidor //sera un char[] en el que habra que separar 25 mensajes
-            read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
-            cout << "Mensaje recibido: " << buffer <<endl;
     
         //}
     } while(mensaje != MENS_FIN);
