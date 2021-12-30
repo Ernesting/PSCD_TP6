@@ -15,8 +15,10 @@ using namespace std;
 
 const int MESSAGE_SIZE = 4001; //mensajes de no más 4000 caracteres
  
-//Primer parametro es la IP del server
-//Segundo parametro es el puerto del server
+//Primer parametro es la IP del servicio de streaming
+//Segundo parametro es el puerto del servicio de streaming
+//Tercer parametro es la IP del gestor de colas
+//Cuarto parametro es la IP del gestor de colas
 int main(int argc, char* argv[]) {
     const string GET_TWEETS = "getTweets()";
 	  const string MENS_FIN   = "endOfService";
