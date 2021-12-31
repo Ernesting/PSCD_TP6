@@ -13,7 +13,7 @@
 #include <sstream>
 using namespace std;
 
-const int MESSAGE_SIZE = 4001; //mensajes de no más 4000 caracteres
+const int MESSAGE_SIZE = 10001; //mensajes de no más 4000 caracteres
  
 //Primer parametro es la IP del servicio de streaming
 //Segundo parametro es el puerto del servicio de streaming
