@@ -1,0 +1,43 @@
+#*****************************************************************
+# File:   Makefile_Cliente_Analizador
+# Author: Saúl Daniel Soriano y equipo 15
+# Date:   enero 2022
+# Coms:   "make -f Makefile_Cliente_Analizador" construye todos los ejecutables
+#         "make -f Makefile_Cliente_Analizador clean" quita ficheros ejecutables y objeto
+#         Es necesario descomentar la línea 24 para poder compilar en hendrix
+#*****************************************************************
+
+#---------------------------------------------------------
+CC=g++
+
+CLIENT=Cliente_Analizador
+SOCKET_DIR=Socket
+SOCKET=${SOCKET_DIR}/Socket
+
+CPPFLAGS=-I. -I${SOCKET_DIR} -O2 -std=c++11 -lsockets # Flags compilacion
+LDFLAGS=-pthread # Flags linkado threads
+
+all: ${CLIENT}
+#----------------------------------------------------------------------------
+#Para gestionar opciones de compilación según la máquina: hendrix tiene sus manías
+#Descomentar la siguiente línea para compilar en hendrix
+SOCKETSFLAGS=-lsocket -lnsl
+#-----------------------------------------------------------
+# CLIENTE
+# Compilacion
+${CLIENT}.o: ${CLIENT}.cpp
+	${CC} -c ${CPPFLAGS} ${CLIENT}.cpp
+
+# Linkado
+${CLIENT}: ${SOCKET}.o ${CLIENT}.o  
+	${CC} ${LDFLAGS} ${SOCKET}.o ${CLIENT}.o -o ${CLIENT} ${SOCKETSFLAGS}
+#-----------------------------------------------------------
+# SOCKETS
+# Compilacion libreria de Sockets
+${SOCKET}.o: ${SOCKET}.hpp ${SOCKET}.cpp
+	${CC} -c ${CPPFLAGS} ${SOCKET}.cpp -o ${SOCKET}.o
+#-----------------------------------------------------------	
+# LIMPIEZA
+clean:
+	$(RM) ${SOCKET}.o
+	$(RM) ${CLIENT} ${CLIENT}.o
