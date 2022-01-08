@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
                 chan_GESTOR_COLAS.Close(socket_fd_GESTOR_COLAS);
                 exit(1);
             }
-            read_bytes = chan_TWEETS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
+            read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
             cout << "Mensaje recibido: " << buffer <<endl;
         }     
 
