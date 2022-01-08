@@ -13,7 +13,7 @@
 #include <sstream>
 using namespace std;
 
-const int MESSAGE_SIZE = 10001; //mensajes de no más 4000 caracteres
+const int MESSAGE_SIZE = 15001; //mensajes de no más 4000 caracteres
  
 //Primer parametro es la IP del servicio de streaming
 //Segundo parametro es el puerto del servicio de streaming
@@ -23,16 +23,14 @@ int main(int argc, char* argv[]) {
     const string GET_TWEETS = "getTweets()";
 	  const string MENS_FIN   = "endOfService";
     const string GET_QUEUES = "getQueues()";
-    const string PUBLISH = "AÑADIR_TAREA";
+    const string PUBLISH = "ANYADIR_TAREA";
     const string READ = "read()";
     // Dirección y número donde escucha el proceso servidor
     //string SERVER_ADDRESS = "localhost";
     string SERVER_ADDRESS_TWEETS = argv[1];
-    //int SERVER_PORT = 2000;
     int SERVER_PORT_TWEETS = atoi(argv[2]);
 
     string SERVER_ADDRESS_GESTOR_COLAS = argv[3];
-    //int SERVER_PORT = 2000;
     int SERVER_PORT_GESTOR_COLAS = atoi(argv[4]);
     // Creación del socket con el que se llevará a cabo
     // la comunicación con el servidor.
@@ -86,9 +84,10 @@ int main(int argc, char* argv[]) {
     do {
         // Leer mensaje de la entrada estandar
         cout << "Escriba 'getTweets()' o 'endOfService' : " <<endl;
-        //getline(cin, mensaje);
+        getline(cin, mensaje);
         // Enviamos el mensaje
-        send_bytes = chan_TWEETS.Send(socket_fd_TWEETS, GET_TWEETS);
+        //cout<<mensaje<<endl;
+        send_bytes = chan_TWEETS.Send(socket_fd_TWEETS,mensaje);
 
         if(send_bytes == -1) {
             cerr << "Error al enviar datos: " << strerror(errno) << endl;
@@ -104,7 +103,7 @@ int main(int argc, char* argv[]) {
 			
 		//	char *dup = strdup(buffer.c_str());
 		//	char *grupos[5];
-      
+     
       istringstream iss(buffer);
       string grupos_de_5_tweets[5];
       
@@ -117,6 +116,7 @@ int main(int argc, char* argv[]) {
           grupos_de_5_tweets[i]+=aux;
           
         }
+      cout << grupos_de_5_tweets[i] <<endl;
       }
       
     for (int i = 0; i< 5; i++){
@@ -128,13 +128,13 @@ int main(int argc, char* argv[]) {
           chan_GESTOR_COLAS.Close(socket_fd_GESTOR_COLAS);
           exit(1);
       }
-      read_bytes = chan_TWEETS.Recv(socket_fd_TWEETS, buffer, MESSAGE_SIZE);
+      read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
       cout << "Mensaje recibido: " << buffer <<endl;
     }     
             
     
         //}
-    } while(mensaje != MENS_FIN);
+    } while(1);
 
     // Cerramos el socket
     int error_code = chan_TWEETS.Close(socket_fd_TWEETS);
