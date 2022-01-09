@@ -70,6 +70,7 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
 
           // Recibimos la respuesta del servidor
           read_bytes = chan.Recv(socket_fd, buffer, MESSAGE_SIZE);
+          cout <<buffer <<endl;
           buffer.erase(0,6);
           monitor.append(buffer);
         
