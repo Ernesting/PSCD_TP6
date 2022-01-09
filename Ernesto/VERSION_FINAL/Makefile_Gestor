@@ -1,11 +1,11 @@
 #*****************************************************************
 # File:   Makefile_Gestor
-# Author: Adri√°n Fortea Valencia 815177
+# Author: Adri·n Fortea Valencia 815177
 # Date:   Diciembre 2021
-# Coms:   Ejemplo de Makefile para la pr√°ctica 5 de PSCD
+# Coms:   Ejemplo de Makefile para la pr·ctica 5 de PSCD
 #         "make -f Makefile_Gestor" construye todos los ejecutables
 #         ....
-#         Es necesario descomentar la l√≠nea 28 para poder compilar en hendrix
+#         Es necesario descomentar la lÌnea 28 para poder compilar en hendrix
 #*****************************************************************
 
 #---------------------------------------------------------
@@ -19,13 +19,13 @@ TAGS=ControlTags
 BQ = BoundedQueue
 
 CPPFLAGS=-I. -I${SOCKET_DIR} -O2 -std=c++11 -lsockets # Flags compilacion
-CPPFLAGS1=-I. -std=c++11     # opciones compilaci√≥n
+CPPFLAGS1=-I. -std=c++11     # opciones compilaciÛn
 LDFLAGS=-pthread # Flags linkado threads
 
 all: ${MULTI_SERVER} 
 #----------------------------------------------------------------------------
-#Para gestionar opciones de compilaci√≥n seg√∫n la m√°quina: hendrix tiene sus man√≠as
-#Descomentar la siguiente l√≠nea para compilar en hendrix
+#Para gestionar opciones de compilaciÛn seg˙n la m·quina: hendrix tiene sus manÌas
+#Descomentar la siguiente lÌnea para compilar en hendrix
 SOCKETSFLAGS=-lsocket -lnsl
 #-----------------------------------------------------------
 # SERVIDOR MULTICLIENTE

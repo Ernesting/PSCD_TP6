@@ -9,9 +9,9 @@
 
 using namespace std;
 
-// Compilaci√≥n: g++ -std=c++11 ServicioStreaming.cpp -o ServicioStreaming
+// CompilaciÛn: g++ -std=c++11 ServicioStreaming.cpp -o ServicioStreaming
 
-//Miramos si es un tweet v√°lido
+//Miramos si es un tweet v·lido
 bool tweetvalido(string& tweet){
     int puntoscomas = 0; //Contador de puntos y comas
     char c;
@@ -30,10 +30,10 @@ bool tweetvalido(string& tweet){
     }
     if(puntoscomas>=3){
         tweet = valido;
-        return true; //Dar√° que es mensaje v√°lido
+        return true; //Dar· que es mensaje v·lido
     }
     else{
-        return false; //Dar√° que no es mensaje v√°lido
+        return false; //Dar· que no es mensaje v·lido
     }
 }
 
@@ -47,8 +47,8 @@ int main(){
     // Puerto donde escucha el proceso servidor
     int SERVER_PORT = 31141; //Podemos coger puertos entre [31141, 31150]
 
-    // Creaci√≥n del socket con el que se llevar√° a cabo
-    // la comunicaci√≥n con el servidor.
+    // CreaciÛn del socket con el que se llevar· a cabo
+    // la comunicaciÛn con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -88,11 +88,11 @@ int main(){
         string buffer;
         int rcv_bytes;   //num de bytes recibidos en un mensaje
         int send_bytes;  //num de bytes enviados en un mensaje
-        string linea; //L√≠nea del fichero de entrada
-        int completo; //Indica el n√∫mero de √≠neas aceptadas hasta el momento
+        string linea; //LÌnea del fichero de entrada
+        int completo; //Indica el n˙mero de Ìneas aceptadas hasta el momento
 
         string basura;
-        getline(fOriginal, basura); //La primera l√≠nea no sirve
+        getline(fOriginal, basura); //La primera lÌnea no sirve
 
         bool out = false; // Inicialmente no salir del bucle
         while (!out) {
@@ -108,8 +108,8 @@ int main(){
 
             //cout << "Mensaje recibido: '" + buffer + "'\n";
 
-            // Si recibimos "FIN" --> Fin de la comunicaci√≥n
-            if (buffer == MENS_FIN) {
+            // Si recibimos "FIN" --> Fin de la comunicaciÛn
+            if (buffer == MENS_FIN || fOriginal.eof()) {
                 out = true; // Salir del bucle
             } 
             else if(buffer == MENS_GET){

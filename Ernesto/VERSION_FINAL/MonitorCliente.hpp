@@ -20,7 +20,7 @@ class MonitorCliente{
 private:
     string fichero;
     //int hanBajado;
-    //aÃ±adir las que se consideren necesarias
+    //añadir las que se consideren necesarias
 
     mutex mtx; //para la ejecucion de procs en exclusion mutua
     condition_variable okLeer; //para esperar a que el CLIENTE este vacio

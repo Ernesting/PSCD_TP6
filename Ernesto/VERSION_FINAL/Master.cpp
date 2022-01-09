@@ -2,7 +2,7 @@
 // File:   Cliente.cpp
 // Author: PSCD-Unizar
 // Date:   noviembre 2015
-// Coms:   Ejemplo de cliente con comunicaci√≥n s√≠ncrona mediante sockets
+// Coms:   Ejemplo de cliente con comunicaciÛn sÌncrona mediante sockets
 //
 //*****************************************************************
 #include <iostream>
@@ -13,7 +13,7 @@
 #include <sstream>
 using namespace std;
 
-const int MESSAGE_SIZE = 10001; //mensajes de no m√°s 4000 caracteres
+const int MESSAGE_SIZE = 10001; //mensajes de no m·s 4000 caracteres
  
 //Primer parametro es la IP del servicio de streaming
 //Segundo parametro es el puerto del servicio de streaming
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     const string GET_QUEUES = "getQueues()";
     const string PUBLISH = "ANYADIR_TAREA";
     const string READ = "read()";
-    // Direcci√≥n y n√∫mero donde escucha el proceso servidor
+    // DirecciÛn y n˙mero donde escucha el proceso servidor
     //string SERVER_ADDRESS = "localhost";
     string SERVER_ADDRESS_TWEETS = argv[1];
     //int SERVER_PORT = 2000;
@@ -34,8 +34,8 @@ int main(int argc, char* argv[]) {
     string SERVER_ADDRESS_GESTOR_COLAS = argv[3];
     //int SERVER_PORT = 2000;
     int SERVER_PORT_GESTOR_COLAS = atoi(argv[4]);
-    // Creaci√≥n del socket con el que se llevar√° a cabo
-    // la comunicaci√≥n con el servidor.
+    // CreaciÛn del socket con el que se llevar· a cabo
+    // la comunicaciÛn con el servidor.
     Socket chan_TWEETS(SERVER_ADDRESS_TWEETS, SERVER_PORT_TWEETS);
     Socket chan_GESTOR_COLAS(SERVER_ADDRESS_GESTOR_COLAS,SERVER_PORT_GESTOR_COLAS);
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     int socket_fd_TWEETS;
     int socket_fd_GESTOR_COLAS;
     do {
-        // Conexi√≥n con el servidor
+        // ConexiÛn con el servidor
         socket_fd_TWEETS = chan_TWEETS.Connect();
         count++;
         
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     }
     count = 0;
     do {
-        // Conexi√≥n con el servidor
+        // ConexiÛn con el servidor
         socket_fd_GESTOR_COLAS = chan_GESTOR_COLAS.Connect();
         count++;
         
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
         }
     } while(socket_fd_GESTOR_COLAS == -1 && count < MAX_ATTEMPS);
 
-    // Chequeamos si se ha realizado la conexi√≥n
+    // Chequeamos si se ha realizado la conexiÛn
     if(socket_fd_GESTOR_COLAS == -1) {
         return socket_fd_GESTOR_COLAS;
     }

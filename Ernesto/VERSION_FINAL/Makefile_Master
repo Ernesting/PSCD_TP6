@@ -8,8 +8,8 @@ LDFLAGS=-pthread # Flags linkado threads
 
 all: ${MULTI_SERVER} 
 #----------------------------------------------------------------------------
-#Para gestionar opciones de compilaciÃ³n segÃºn la mÃ¡quina: hendrix tiene sus manÃ­as
-#Descomentar la siguiente lÃ­nea para compilar en hendrix
+#Para gestionar opciones de compilación según la máquina: hendrix tiene sus manías
+#Descomentar la siguiente línea para compilar en hendrix
 SOCKETSFLAGS=-lsocket -lnsl
 #-----------------------------------------------------------
 # SERVIDOR MULTICLIENTE

@@ -7,8 +7,8 @@
 #include <MonitorCliente.hpp>
 
 using namespace std;
-// Compilaci√≥n: g++ -std=c++11 Cliente.cpp -o Cliente
-const int MESSAGE_SIZE = 10000; //mensajes de no m√°s 10000 caracteres
+// CompilaciÛn: g++ -std=c++11 Cliente.cpp -o Cliente
+const int MESSAGE_SIZE = 10000; //mensajes de no m·s 10000 caracteres
 
 
 void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVER_PORT){
@@ -19,8 +19,8 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
     const string MENS_FIN = "FIN";
 
 
-    // Creaci√≥n del socket con el que se llevar√° a cabo
-    // la comunicaci√≥n con el servidor.
+    // CreaciÛn del socket con el que se llevar· a cabo
+    // la comunicaciÛn con el servidor.
     Socket chan(SERVER_ADDRESS, SERVER_PORT);
 
     // Conectamos con el servidor. Probamos varias conexiones
@@ -28,7 +28,7 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
     int count = 0;
     int socket_fd;
     do {
-        // Conexi√≥n con el servidor
+        // ConexiÛn con el servidor
         socket_fd = chan.Connect();
         count++;
 
@@ -38,7 +38,7 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
         }
     } while(socket_fd == -1 && count < MAX_ATTEMPS);
 
-    // Chequeamos si se ha realizado la conexi√≥n
+    // Chequeamos si se ha realizado la conexiÛn
     if(socket_fd == -1) {
         return;
     }

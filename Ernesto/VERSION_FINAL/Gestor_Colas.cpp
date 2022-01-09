@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 // File:   practica5_SERVER.cpp
-// Author: AdriÃ¡n Fortea Valencia 815177
-//         SaÃºl Daniel Soriano 815743
+// Author: Adrián Fortea Valencia 815177
+//         Saúl Daniel Soriano 815743
 // Date:   Diciembre 2021
-// Coms:   PrÃ¡ctica 5 de PSCD
+// Coms:   Práctica 5 de PSCD
 //------------------------------------------------------------------------------
 
 #include "Socket.hpp"
@@ -15,7 +15,7 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
-const int MESSAGE_SIZE = 10001; //mensajes de no mÃ¡s 4000 caracteres
+const int MESSAGE_SIZE = 10001; //mensajes de no más 4000 caracteres
 using namespace std;
 
 void partesMensaje(string buffer, string& accion, string& resto){
@@ -32,8 +32,8 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
 
     // Puerto donde escucha el proceso servidor
 
-    // CreaciÃ³n del socket con el que se llevarÃ¡ a cabo
-    // la comunicaciÃ³n con el servidor.
+    // Creación del socket con el que se llevará a cabo
+    // la comunicación con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -88,7 +88,7 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
         partesMensaje(buffer,accion,tweets);
         
         if(accion == A_TAREA){
-            //AÃ±adir una tarea a la cola
+            //Añadir una tarea a la cola
             tareas.publish(tweets);
             //tareas.Getqueues();
             send_bytes = chan.Send(master_fd, OK );
@@ -128,8 +128,8 @@ void GestorCliente(int SERVER_PORT, ControlTags& tags){
     string DATOS= "DATOS";
     // Puerto donde escucha el proceso servidor
 
-    // CreaciÃ³n del socket con el que se llevarÃ¡ a cabo
-    // la comunicaciÃ³n con el servidor.
+    // Creación del socket con el que se llevará a cabo
+    // la comunicación con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -278,8 +278,8 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
     thread worker[N];
     int worker_fd[N];
 
-    // CreaciÃ³n del socket con el que se llevarÃ¡ a cabo
-    // la comunicaciÃ³n con el servidor.
+    // Creación del socket con el que se llevará a cabo
+    // la comunicación con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -313,7 +313,7 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
         worker[i] = thread(&GestorWorkers, ref(chan), worker_fd[i], ref(tareas), ref(tags));
     }
 
-    //Â¿QuÃ© pasa si algÃºn thread acaba inesperadamente?
+    //¿Qué pasa si algún thread acaba inesperadamente?
     for (int i=0; i<N; i++) {
         worker[i].join();
     }
@@ -330,7 +330,7 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
 }
 
 int main(int argc, char* argv[]){
-    const int N = 6; //NÃºmero de workers a atender
+    const int N = 6; //Número de workers a atender
     const int N_COLA= 50;
     // Puerto donde escucha el proceso servidor
     int SERVER_PORT_1 = atoi(argv[1]); //puerto del servidor master

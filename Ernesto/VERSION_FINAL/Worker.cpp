@@ -2,7 +2,7 @@
 // File:   Cliente.cpp
 // Author: PSCD-Unizar
 // Date:   noviembre 2015
-// Coms:   Ejemplo de cliente con comunicaci√≥n s√≠ncrona mediante sockets
+// Coms:   Ejemplo de cliente con comunicaciÛn sÌncrona mediante sockets
 //
 //*****************************************************************
 #include <iostream>
@@ -13,7 +13,7 @@
 #include <sstream>
 using namespace std;
 
-const int MESSAGE_SIZE = 4001; //mensajes de no m√°s 4000 caracteres
+const int MESSAGE_SIZE = 4001; //mensajes de no m·s 4000 caracteres
 const string READ = "PROCESAR_TAREA";
 const string PUBLISH = "GUARDAR_DATOS";
 
@@ -103,7 +103,7 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
   int count = 0;
   int socket_fd_GESTOR_COLAS;
   do {
-    // Conexi√≥n con el servidor
+    // ConexiÛn con el servidor
     socket_fd_GESTOR_COLAS = chan_GESTOR_COLAS.Connect();
     count++;
     
