@@ -15,19 +15,19 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
-const int MESSAGE_SIZE = 4001; //mensajes de no más 4000 caracteres
+const int MESSAGE_SIZE = 10001; //mensajes de no más 4000 caracteres
 using namespace std;
 
 void partesMensaje(string buffer, string& accion, string& resto){
 
     stringstream input_stringstream(buffer);
     getline(input_stringstream, accion, ',');
-    getline(input_stringstream, resto, ',');
+    getline(input_stringstream, resto, '\0');
 }
 
 void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
 
-    string A_TAREA= "AÑADIR_TAREA";
+    string A_TAREA= "ANYADIR_TAREA";
     string OK = "OK";
 
     // Puerto donde escucha el proceso servidor
@@ -66,13 +66,13 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
     }
 
     // Buffer para recibir el mensaje
-    string buffer;
     int rcv_bytes;   //num de bytes recibidos en un mensaje
     int send_bytes;  //num de bytes enviados en un mensaje
 
     bool out = false; // Inicialmente no salir del bucle
     while (!out) {
         // Recibimos el mensaje del cliente
+        string buffer;
         rcv_bytes = chan.Recv(master_fd, buffer, MESSAGE_SIZE);
         if(rcv_bytes == -1) {
             string mensError(strerror(errno));
@@ -90,6 +90,7 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
         if(accion == A_TAREA){
             //Añadir una tarea a la cola
             tareas.publish(tweets);
+            //tareas.Getqueues();
             send_bytes = chan.Send(master_fd, OK );
             if(send_bytes == -1) {
                 cerr << "Error al enviar datos: " + string(strerror(errno)) + "\n";
@@ -240,11 +241,12 @@ void GestorWorkers(Socket& soc, int worker_fd, ControlTareas& tareas, ControlTag
         string accion;
         string datos;
         partesMensaje(buffer, accion, datos);
-        cout<<accion << " + " <<datos<<endl;
+
         if(accion == PRO_TAREA ){ 
+            cout<<accion + "\n";
             string tarea;
             tareas.read(tarea);
-
+            cout<<tarea+"\n";
             int send_bytes = soc.Send(worker_fd, TAREA + "," + tarea) ;
             if(send_bytes == -1) {
                 cerr << "Error al recibir datos: " + string(strerror(errno)) + "\n";
@@ -255,8 +257,9 @@ void GestorWorkers(Socket& soc, int worker_fd, ControlTareas& tareas, ControlTag
 
         }
         if(accion == GUA_DATOS ){
+            cout<<accion + "\n";
             tags.publish(datos);
-
+            cout<<datos + "\n";
             int send_bytes = soc.Send(worker_fd, OK) ;
             if(send_bytes == -1) {
                 cerr << "Error al recibir datos: " + string(strerror(errno)) + "\n";
@@ -338,13 +341,13 @@ int main(int argc, char* argv[]){
     ControlTareas tareas(N_COLA);
     thread master;
     thread worker;
-    //thread cliente;
+    thread cliente;
     master = thread(&GestorMaster, SERVER_PORT_1,ref(tareas));
     worker = thread(&GestorWorker, SERVER_PORT_2, ref(tareas), ref(tags), N);
-    //cliente = thread(&GestorCliente, SERVER_PORT_3, ref(tags));
+    cliente = thread(&GestorCliente, SERVER_PORT_3, ref(tags));
     master.join();
     worker.join();
-    //cliente.join();
+    cliente.join();
 
     return 0;
 }
