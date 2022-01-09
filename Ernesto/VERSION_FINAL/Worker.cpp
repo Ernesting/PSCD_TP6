@@ -15,7 +15,7 @@ using namespace std;
 
 const int MESSAGE_SIZE = 4001; //mensajes de no más 4000 caracteres
 const string READ = "PROCESAR_TAREA";
-const string PUBLISH = "GUARDAR_DATOS,";
+const string PUBLISH = "GUARDAR_DATOS";
 
 //Pre:
 
@@ -73,7 +73,6 @@ bool extraer_tags (string tweets, string& resultado){
       }
       //cout<<tweets<<endl;
       else{
-        cout<<tweets<<endl;
         aux = " "+tweets;
         aux4 = strdup(aux.c_str());
         aux4 = strtok(aux4, "#");
@@ -123,6 +122,7 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
     int send_bytes;
     
     send_bytes = chan_GESTOR_COLAS.Send(socket_fd_GESTOR_COLAS, READ);
+
         if(send_bytes == -1) {
             cerr << "Error al enviar datos: " << strerror(errno) << endl;
             // Cerramos el socket
@@ -133,17 +133,14 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
     string buffer;
   
     read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
-    
-    cout << buffer <<endl;
     //Quitamos las 6 primeras letras que equivalen a "TAREA,"
     buffer.erase(0,6);
-    cout <<buffer<<endl;
     //extraer tags
     string resultado;
     extraer_tags(buffer,resultado);
     while(extraer_tags("",resultado)){
       //publicar tags
-      send_bytes = chan_GESTOR_COLAS.Send(socket_fd_GESTOR_COLAS, PUBLISH+resultado);
+      send_bytes = chan_GESTOR_COLAS.Send(socket_fd_GESTOR_COLAS, PUBLISH + "," + resultado);
       if(send_bytes == -1) {
             cerr << "Error al enviar datos: " << strerror(errno) << endl;
             // Cerramos el socket
@@ -152,7 +149,6 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
         }
       //leer ok
       read_bytes = chan_GESTOR_COLAS.Recv(socket_fd_GESTOR_COLAS, buffer, MESSAGE_SIZE);
-      
     }
     
 
