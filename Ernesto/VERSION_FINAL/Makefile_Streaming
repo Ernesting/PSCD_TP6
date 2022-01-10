@@ -11,7 +11,7 @@
 CC=g++
 
 SERVER=ServicioStreaming
-SOCKET_DIR=Socket
+SOCKET_DIR=SocketHendrix
 SOCKET=${SOCKET_DIR}/Socket
 
 CPPFLAGS=-I. -I${SOCKET_DIR} -O2 -std=c++11 -lsockets # Flags compilacion

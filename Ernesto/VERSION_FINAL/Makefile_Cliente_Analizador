@@ -25,24 +25,24 @@ all: ${MULTI_SERVER}
 #----------------------------------------------------------------------------
 #Para gestionar opciones de compilación según la máquina: hendrix tiene sus manías
 #Descomentar la siguiente línea para compilar en hendrix
-SOCKETSFLAGS=-lsocket -lnsl
+#SOCKETSFLAGS=-lsocket -lnsl
 #-----------------------------------------------------------
 # SERVIDOR MULTICLIENTE
 # Compilacion
 ${MULTI_SERVER}.o: ${MULTI_SERVER}.cpp 
-	${CC} -c ${CPPFLAGS} ${MULTI_SERVER}.cpp
+	g++ -c ${CPPFLAGS} ${MULTI_SERVER}.cpp
 
 # Linkado
 ${MULTI_SERVER}: ${SOCKET}.o ${TAREAS}.o ${MULTI_SERVER}.o
-	${CC} ${LDFLAGS} ${SOCKET}.o ${TAREAS}.o ${MULTI_SERVER}.o -o ${MULTI_SERVER} ${SOCKETSFLAGS}
+	g++ ${LDFLAGS} ${SOCKET}.o ${TAREAS}.o ${MULTI_SERVER}.o -o ${MULTI_SERVER} ${SOCKETSFLAGS}
 #-----------------------------------------------------------
 # SOCKETS
 # Compilacion libreria de Sockets
 ${SOCKET}.o: ${SOCKET}.hpp ${SOCKET}.cpp
-	${CC} -c ${CPPFLAGS} ${SOCKET}.cpp -o ${SOCKET}.o
+	g++ -c ${CPPFLAGS} ${SOCKET}.cpp -o ${SOCKET}.o
 #-----------------------------------------------------------
 ${TAREAS}.o: ${TAREAS}.hpp ${TAREAS}.cpp ${BQ}.hpp ${BQ}.cpp
-	${CC} -c ${TAREAS}.cpp -o ${TAREAS}.o ${CPPFLAGS1}
+	g++ -c ${TAREAS}.cpp -o ${TAREAS}.o ${CPPFLAGS1}
 #-----------------------------------------------------------	
 # LIMPIEZA
 clean:

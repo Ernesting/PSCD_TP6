@@ -12,7 +12,7 @@
 CC=g++
 
 MULTI_SERVER=Gestor_Colas
-SOCKET_DIR=Socket
+SOCKET_DIR=SocketHendrix
 SOCKET=${SOCKET_DIR}/Socket
 TAREAS=ControlTareas
 TAGS=ControlTags
