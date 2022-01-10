@@ -20,22 +20,23 @@ class MonitorCliente{
 private:
     string fichero;
     //int hanBajado;
-    //a�adir las que se consideren necesarias
+    //añadir las que se consideren necesarias
 
     mutex mtx; //para la ejecucion de procs en exclusion mutua
-    condition_variable okLeer; //para esperar a que el CLIENTE este vacio
-    condition_variable okEscribir;
-    int nLec;
-    int nEsc;
+    //condition_variable okLeer; //para esperar a que se pueda leer el repositorio
+    //condition_variable okEscribir; //para esperar a que se pueda escribir en el repositorio
+    //int nLec; //para contar el numero de procesos leyendo el repositorio
+    //int nEsc; //para contar el numero de procesos escribiendo en el repositorio
 public:
     //--------------------------- constructores
-    //el parametro "N_W" se copiara sobre el atributo "N_W" del monitor
+    //el parametro "_fichero" se copiara sobre el atributo "fichero" del monitor
     MonitorCliente(string _fichero);
     //--------------------------- destructor
     ~MonitorCliente();
     //--------------------------- usuario
-    //"i" es el identificador de usuario
+    //_palabra es la frase que se introducirá en la ultima linea del repositorio junto a un \n
     void append(string _palabra);
+    //abre el repositorio, cuenta la frecuencia de cada palabra y la muestra
     void show();
     
 };
