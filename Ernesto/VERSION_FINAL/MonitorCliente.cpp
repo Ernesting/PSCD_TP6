@@ -4,8 +4,8 @@
 
 MonitorCliente::MonitorCliente(string _fichero){
     this->fichero = _fichero;
-    nLec = 0;
-    nEsc = 0;
+    //nLec = 0;
+    //nEsc = 0;
 }
 
     //--------------------------- destructor
