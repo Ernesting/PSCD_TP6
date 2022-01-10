@@ -336,6 +336,9 @@ int main(int argc, char* argv[]){
     int SERVER_PORT_1 = atoi(argv[1]); //puerto del servidor master
     int SERVER_PORT_2 = atoi(argv[2]); //puerto del servidor worker
     int SERVER_PORT_3 = atoi(argv[3]); //puerto del servidor cliente
+    //int SERVER_PORT_1 = 31142; //puerto del servidor master
+    //int SERVER_PORT_2 = 31143; //puerto del servidor worker
+    //int SERVER_PORT_3 = 31144; //puerto del servidor cliente
     printf("Servidor iniciado en puertos: %d,%d,%d\n",SERVER_PORT_1,SERVER_PORT_2,SERVER_PORT_3);
     ControlTags tags(N_COLA);
     ControlTareas tareas(N_COLA);

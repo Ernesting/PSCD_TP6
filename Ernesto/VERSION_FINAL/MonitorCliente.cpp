@@ -23,16 +23,16 @@ void appendWord(const string _palabra,const string fichero){
 void MonitorCliente::append(string _palabra){
     unique_lock<mutex> lck(mtx);
     
-    while (nLec > 0 || nEsc > 0){
+    /*while (nLec > 0 || nEsc > 0){
       okEscribir.wait(lck);
     }
-    nEsc ++;
+    nEsc ++;*/
     
     appendWord(_palabra, fichero);
     
-    nEsc --;
+    /*nEsc --;
     okEscribir.notify_one();
-    okLeer.notify_all();
+    okLeer.notify_all();*/
     
 }
 
@@ -55,17 +55,17 @@ void mostrarFrecuencias(string fichero){
 void MonitorCliente::show(){
   unique_lock<mutex> lck(mtx);
  
-   while (nEsc > 0){
+   /*while (nEsc > 0){
       okLeer.wait(lck);
     }
-    nLec ++;
+    nLec ++;*/
     
    mostrarFrecuencias(fichero);
    
-   nLec --;
+   /*nLec --;
    if (nLec == 0){
      okEscribir.notify_one();
-   }
+   }*/
   
 }
     
