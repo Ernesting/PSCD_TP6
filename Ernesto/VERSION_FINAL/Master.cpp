@@ -1,8 +1,8 @@
 //*****************************************************************
-// File:   Cliente.cpp
-// Author: PSCD-Unizar
-// Date:   noviembre 2015
-// Coms:   Ejemplo de cliente con comunicación síncrona mediante sockets
+// File:   Master.cpp
+// Author: Ernesto Bielsa 798799
+// Date:   Diciembre 2021
+// Coms:   ./Master <ip streaming> <puerto streaming> <ip gestor master> <puerto gestor master>
 //
 //*****************************************************************
 #include <iostream>
