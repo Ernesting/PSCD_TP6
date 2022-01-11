@@ -1,3 +1,9 @@
+//*****************************************************************
+// File:   ControlTags.hpp
+// Author: Adrian Fortea Valencia 815177
+// Date:   Diciembre 2021
+//
+//*****************************************************************
 #include <mutex>
 #include <condition_variable>
 #include "BoundedQueue.hpp"
