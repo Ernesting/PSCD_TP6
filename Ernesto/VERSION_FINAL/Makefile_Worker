@@ -2,8 +2,7 @@
 # File:   Makefile_Worker
 # Author: Adrian Fortea Valencia y equipo 15
 # Date:   diciembre 2022
-# Coms:   Ejemplo de Makefile para la práctica 5 de PSCD
-#         "make -f Makefile_Worker" construye todos los ejecutables
+# Coms:   "make -f Makefile_Worker" construye todos los ejecutables
 #         Es necesario descomentar la línea 28 para poder compilar en hendrix
 #*****************************************************************
 #---------------------------------------------------------
