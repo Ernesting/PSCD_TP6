@@ -1,8 +1,8 @@
 //*****************************************************************
-// File:   Cliente.cpp
-// Author: PSCD-Unizar
-// Date:   noviembre 2015
-// Coms:   Ejemplo de cliente con comunicación síncrona mediante sockets
+// File:   Worker.cpp
+// Author: Ernesto Bielsa 798799
+// Date:   Diciembre 2021
+// Coms:   ./Worker <ip gestor worker> <puerto gestor worker>
 //
 //*****************************************************************
 #include <iostream>
