@@ -1,3 +1,9 @@
+//*****************************************************************
+// File:   ControlTareas.cpp
+// Author: Adrian Fortea Valencia 815177
+// Date:   Diciembre 2021
+//
+//*****************************************************************
 #include "ControlTareas.hpp"
 
 
