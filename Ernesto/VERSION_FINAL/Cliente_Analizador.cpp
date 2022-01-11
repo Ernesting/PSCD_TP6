@@ -1,3 +1,10 @@
+//*****************************************************************
+// File:   Cliente_Analizador.cpp
+// Author: Ernesto Bielsa Gracia 798799
+// Date:   Diciembre 2021
+// Coms:   ./Cliente_Analizador <ip gestor cliente> <puerto gestor cliente>
+//
+//*****************************************************************
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -7,8 +14,8 @@
 #include <MonitorCliente.hpp>
 
 using namespace std;
-// CompilaciÛn: g++ -std=c++11 Cliente.cpp -o Cliente
-const int MESSAGE_SIZE = 10000; //mensajes de no m·s 10000 caracteres
+// Compilaci√≥n: g++ -std=c++11 Cliente.cpp -o Cliente
+const int MESSAGE_SIZE = 10000; //mensajes de no m√°s 10000 caracteres
 
 
 void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVER_PORT){
@@ -19,8 +26,8 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
     const string MENS_FIN = "FIN";
 
 
-    // CreaciÛn del socket con el que se llevar· a cabo
-    // la comunicaciÛn con el servidor.
+    // Creaci√≥n del socket con el que se llevar√° a cabo
+    // la comunicaci√≥n con el servidor.
     Socket chan(SERVER_ADDRESS, SERVER_PORT);
 
     // Conectamos con el servidor. Probamos varias conexiones
@@ -28,7 +35,7 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
     int count = 0;
     int socket_fd;
     do {
-        // ConexiÛn con el servidor
+        // Conexi√≥n con el servidor
         socket_fd = chan.Connect();
         count++;
 
@@ -38,7 +45,7 @@ void procesoAnalizador(MonitorCliente& monitor, string SERVER_ADDRESS, int SERVE
         }
     } while(socket_fd == -1 && count < MAX_ATTEMPS);
 
-    // Chequeamos si se ha realizado la conexiÛn
+    // Chequeamos si se ha realizado la conexi√≥n
     if(socket_fd == -1) {
         return;
     }
