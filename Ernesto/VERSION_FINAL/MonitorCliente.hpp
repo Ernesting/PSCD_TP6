@@ -1,4 +1,9 @@
-//Fichero: MonitorCliente.hpp
+//*****************************************************************
+// File:   MonitorCliente.hpp
+// Author: Ernesto Bielsa 798799
+// Date:   Diciembre 2021
+//
+//*****************************************************************
 #ifndef MONITOR_CLIENTE_HPP
 #define MONITOR_CLIENTE_HPP
 
@@ -20,7 +25,7 @@ class MonitorCliente{
 private:
     string fichero;
     //int hanBajado;
-    //aÒadir las que se consideren necesarias
+    //a√±adir las que se consideren necesarias
 
     mutex mtx; //para la ejecucion de procs en exclusion mutua
     //condition_variable okLeer; //para esperar a que se pueda leer el repositorio
@@ -34,7 +39,7 @@ public:
     //--------------------------- destructor
     ~MonitorCliente();
     //--------------------------- usuario
-    //_palabra es la frase que se introducir· en la ultima linea del repositorio junto a un \n
+    //_palabra es la frase que se introducir√° en la ultima linea del repositorio junto a un \n
     void append(string _palabra);
     //abre el repositorio, cuenta la frecuencia de cada palabra y la muestra
     void show();
