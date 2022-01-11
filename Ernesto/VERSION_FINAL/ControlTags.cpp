@@ -1,3 +1,9 @@
+//*****************************************************************
+// File:   ControlTags.cpp
+// Author: Adrian Fortea Valencia 815177
+// Date:   Diciembre 2021
+//
+//*****************************************************************
 #include "ControlTags.hpp"
 
 
