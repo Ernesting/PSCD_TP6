@@ -2,7 +2,7 @@
 // File:   Cliente.cpp
 // Author: PSCD-Unizar
 // Date:   noviembre 2015
-// Coms:   Ejemplo de cliente con comunicaciÛn sÌncrona mediante sockets
+// Coms:   Ejemplo de cliente con comunicaci√≥n s√≠ncrona mediante sockets
 //
 //*****************************************************************
 #include <iostream>
@@ -13,7 +13,7 @@
 #include <sstream>
 using namespace std;
 
-const int MESSAGE_SIZE = 4001; //mensajes de no m·s 4000 caracteres
+const int MESSAGE_SIZE = 4001; //mensajes de no m√°s 4000 caracteres
 const string READ = "PROCESAR_TAREA";
 const string PUBLISH = "GUARDAR_DATOS";
 
@@ -24,19 +24,11 @@ bool extraer_tags (string tweets, string& resultado){
     static char *aux4;
     static bool hay_hashtags = false;
     if (strlen(tweets.data()) == 0 && hay_hashtags == true){
-      //cout<<aux<<endl;
-      //cout<<aux4<<endl;
-      //resultado = strtok(aux4,"#");
-      //resultado = strtok(NULL, " ;,.\t\n");
-      //if (aux4 == NULL){return 0;}
       if (aux.length()!= 0){
         
           aux4 = strtok(NULL, "#");
           if (aux4 == NULL){return 0;}
             resultado = aux4;
-            //aux4 = strtok(NULL," ;,.\t\n");
-            // cout<<aux<<endl;
-            //cout<<aux4<<endl;
             return 1;
      }else{return 0;}
     }else{
@@ -66,26 +58,17 @@ bool extraer_tags (string tweets, string& resultado){
           }
         }
       }
-      //cout<<len<<endl;
       if (len==0){
         hay_hashtags = false;
         return 0;
       }
-      //cout<<tweets<<endl;
       else{
         aux = " "+tweets;
         aux4 = strdup(aux.c_str());
         aux4 = strtok(aux4, "#");
-        //cout<<aux4<<endl;
         hay_hashtags = true;
         return 1;
       }
-      
-     /* aux = " "+tweets;
-      aux4 = strdup(aux.c_str());
-      aux4 = strtok(aux4, "#");
-      aux4= strtok(NULL,"#");
-      resultado = aux4;*/
     }
     
 
@@ -103,7 +86,7 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
   int count = 0;
   int socket_fd_GESTOR_COLAS;
   do {
-    // ConexiÛn con el servidor
+    // Conexi√≥n con el servidor
     socket_fd_GESTOR_COLAS = chan_GESTOR_COLAS.Connect();
     count++;
     
@@ -160,13 +143,7 @@ void servWorker(string SERVER_ADDRESS_GESTOR_COLAS, int SERVER_PORT_GESTOR_COLAS
 //Primer parametro es la IP del server
 //Segundo parametro es el puerto del server
 int main(int argc, char* argv[]) {
-  
-  /*string resultado;
-  extraer_tags("as uno 2dos; AS#KJDAKmelaacabodeputosacar",resultado);
-  while(extraer_tags("",resultado)){
-    cout<<resultado<<endl;
-  }*/
-  //cout <<resultado<<endl;
+
   const int N = 6;
   thread procesos[N];
   
