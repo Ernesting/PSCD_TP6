@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
-// File:   practica5_SERVER.cpp
+// File:   Gestor_Colas.cpp
 // Author: Adrián Fortea Valencia 815177
 //         Saúl Daniel Soriano 815743
 // Date:   Diciembre 2021
-// Coms:   Práctica 5 de PSCD
+// Coms: ./Gestor_Colas <puerto gestor master> <puerto gestor worker> <puerto gestor cliente>
 //------------------------------------------------------------------------------
 
 #include "Socket.hpp"
