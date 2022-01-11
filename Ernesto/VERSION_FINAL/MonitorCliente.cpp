@@ -1,3 +1,9 @@
+//*****************************************************************
+// File:   MonitorCliente.cpp
+// Author: Ernesto Bielsa 798799
+// Date:   Diciembre 2021
+//
+//*****************************************************************
 #include <MonitorCliente.hpp>
 //#include <iostream>
 //#include <string>
