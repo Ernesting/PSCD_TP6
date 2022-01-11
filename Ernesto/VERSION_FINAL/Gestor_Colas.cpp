@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------
 // File:   practica5_SERVER.cpp
-// Author: Adri·n Fortea Valencia 815177
-//         Sa˙l Daniel Soriano 815743
+// Author: Adri√°n Fortea Valencia 815177
+//         Sa√∫l Daniel Soriano 815743
 // Date:   Diciembre 2021
-// Coms:   Pr·ctica 5 de PSCD
+// Coms:   Pr√°ctica 5 de PSCD
 //------------------------------------------------------------------------------
 
 #include "Socket.hpp"
@@ -15,7 +15,7 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
-const int MESSAGE_SIZE = 10001; //mensajes de no m·s 4000 caracteres
+const int MESSAGE_SIZE = 10001; //mensajes de no m√°s 4000 caracteres
 using namespace std;
 
 void partesMensaje(string buffer, string& accion, string& resto){
@@ -32,8 +32,8 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
 
     // Puerto donde escucha el proceso servidor
 
-    // CreaciÛn del socket con el que se llevar· a cabo
-    // la comunicaciÛn con el servidor.
+    // Creaci√≥n del socket con el que se llevar√° a cabo
+    // la comunicaci√≥n con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -88,7 +88,7 @@ void GestorMaster(int SERVER_PORT, ControlTareas& tareas){
         partesMensaje(buffer,accion,tweets);
         
         if(accion == A_TAREA){
-            //AÒadir una tarea a la cola
+            //A√±adir una tarea a la cola
             tareas.publish(tweets);
             //tareas.Getqueues();
             send_bytes = chan.Send(master_fd, OK );
@@ -128,8 +128,8 @@ void GestorCliente(int SERVER_PORT, ControlTags& tags){
     string DATOS= "DATOS";
     // Puerto donde escucha el proceso servidor
 
-    // CreaciÛn del socket con el que se llevar· a cabo
-    // la comunicaciÛn con el servidor.
+    // Creaci√≥n del socket con el que se llevar√° a cabo
+    // la comunicaci√≥n con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -243,10 +243,10 @@ void GestorWorkers(Socket& soc, int worker_fd, ControlTareas& tareas, ControlTag
         partesMensaje(buffer, accion, datos);
 
         if(accion == PRO_TAREA ){ 
-            cout<<accion + "\n";
+            //cout<<accion + "\n";
             string tarea;
             tareas.read(tarea);
-            cout<<tarea+"\n";
+            //cout<<tarea+"\n";
             int send_bytes = soc.Send(worker_fd, TAREA + "," + tarea) ;
             if(send_bytes == -1) {
                 cerr << "Error al recibir datos: " + string(strerror(errno)) + "\n";
@@ -257,9 +257,9 @@ void GestorWorkers(Socket& soc, int worker_fd, ControlTareas& tareas, ControlTag
 
         }
         if(accion == GUA_DATOS ){
-            cout<<accion + "\n";
+            //cout<<accion + "\n";
             tags.publish(datos);
-            cout<<datos + "\n";
+            //cout<<datos + "\n";
             int send_bytes = soc.Send(worker_fd, OK) ;
             if(send_bytes == -1) {
                 cerr << "Error al recibir datos: " + string(strerror(errno)) + "\n";
@@ -278,8 +278,8 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
     thread worker[N];
     int worker_fd[N];
 
-    // CreaciÛn del socket con el que se llevar· a cabo
-    // la comunicaciÛn con el servidor.
+    // Creaci√≥n del socket con el que se llevar√° a cabo
+    // la comunicaci√≥n con el servidor.
     Socket chan(SERVER_PORT);
 
     // Bind
@@ -313,7 +313,7 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
         worker[i] = thread(&GestorWorkers, ref(chan), worker_fd[i], ref(tareas), ref(tags));
     }
 
-    //øQuÈ pasa si alg˙n thread acaba inesperadamente?
+    //¬øQu√© pasa si alg√∫n thread acaba inesperadamente?
     for (int i=0; i<N; i++) {
         worker[i].join();
     }
@@ -330,7 +330,7 @@ void GestorWorker(int SERVER_PORT, ControlTareas& tareas, ControlTags& tags, int
 }
 
 int main(int argc, char* argv[]){
-    const int N = 6; //N˙mero de workers a atender
+    const int N = 6; //N√∫mero de workers a atender
     const int N_COLA= 50;
     // Puerto donde escucha el proceso servidor
     int SERVER_PORT_1 = atoi(argv[1]); //puerto del servidor master
